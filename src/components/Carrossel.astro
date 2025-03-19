@@ -5,7 +5,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 // Função para gerar dinamicamente os nomes das imagens
-const basePath = "src/assets/carrossel"; // Caminho relativo às imagens no projeto
+const basePath = "/carrossel"; // Caminho relativo às imagens no projeto
 const totalImages = 13; // Total de imagens
 const imagens = Array.from({ length: totalImages }, (_, i) => {
   const imageNumber = String(i + 1).padStart(2, "0"); // Formata números como "01", "02", etc.
