@@ -1,13 +1,53 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import CargasCarrossel from "../components/servicos/CargasCarrossel.astro";
+import CarrosCarrossel from "../components/servicos/CarrosCarrossel.astro";
+import MotosCarrossel from "../components/servicos/MotosCarrossel.astro";
+import Layout from "../layouts/Layout.astro";
+
+const sections = [
+  { title: "Carros", component: CarrosCarrossel },
+  { title: "Motos", component: MotosCarrossel },
+  { title: "Cargas", component: CargasCarrossel },
+];
 ---
 
 <Layout>
-  <h1>Nossos Serviços</h1>
-  <ul>
-    <li>Guincho leve</li>
-    <li>Guincho pesado</li>
-    <li>Serviço de resgate de veículos</li>
-    <li>Atendimento em emergências e acidentes</li>
-  </ul>
+  <article>
+    <h3>Serviços Oferecidos</h3>
+    <ul>
+      <li>🚚 Guincho para Vans e Carros</li>
+      <li>🏍️ Guincho para Motos</li>
+      <li>🚑 Serviço de Resgate de Veículos</li>
+      <li>⚠️ Atendimento em Emergências</li>
+      <li>📦 Cargas e Transporte de Mercadorias</li>
+      <li>🆘 Socorro e Assistência em Geral</li>
+    </ul>
+  </article>
+
+  {
+    sections.map(({ title, component: Component }) => (
+      <article class="sections">
+        <h3>{title}</h3>
+        <Component />
+        <footer>
+          <p>📍 São Paulo</p>
+          <address>
+            <a href="tel:+5511948498385">(11) 94849-8385</a>
+          </address>
+        </footer>
+      </article>
+    ))
+  }
 </Layout>
+
+<style>
+  .sections {
+    text-align: center;
+  }
+
+  footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+</style>

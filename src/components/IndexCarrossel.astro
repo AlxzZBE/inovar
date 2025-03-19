@@ -1,0 +1,74 @@
+---
+// Importações do Swiper
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+// Função para gerar dinamicamente os nomes das imagens
+const basePath = "/carrossel"; // Caminho relativo às imagens no projeto
+const totalImages = 13; // Total de imagens
+const imagens = Array.from({ length: totalImages }, (_, i) => {
+  const imageNumber = String(i + 1).padStart(2, "0"); // Formata números como "01", "02", etc.
+  return `${basePath}/${imageNumber}.jpg`;
+});
+---
+
+<div class="carrossel">
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <!-- Loop para renderizar os slides -->
+      {
+        imagens.map((img, index) => (
+          <div class="swiper-slide">
+            <img src={img} alt={`Slide ${index + 1}`} class="slide-image" />
+          </div>
+        ))
+      }
+    </div>
+    <!-- Botões de navegação -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <!-- Paginação -->
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+
+<style>
+  .carrossel {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .slide-image {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+</style>
+
+<script>
+  // Inicialização do Swiper após o DOM ser carregado
+  import Swiper from "swiper";
+  import { Navigation, Pagination } from "swiper/modules";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    new Swiper(".swiper", {
+      modules: [Navigation, Pagination],
+      spaceBetween: 20,
+      slidesPerView: 1,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      pagination: { el: ".swiper-pagination", clickable: true },
+      loop: true,
+    });
+  });
+</script>

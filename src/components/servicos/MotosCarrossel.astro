@@ -1,0 +1,68 @@
+---
+// Importações do Swiper
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+// Função para gerar dinamicamente os nomes das imagens
+const basePath = "/carrossel/motos"; // Caminho relativo às imagens no projeto
+const totalImages = 1; // Total de imagens
+const imagens = Array.from({ length: totalImages }, (_, i) => {
+  const imageNumber = String(i + 1).padStart(2, "0"); // Formata números como "01", "02", etc.
+  return `${basePath}/${imageNumber}.jpg`;
+});
+---
+
+<div class="carrossel">
+  <div class="swiper motos-swiper">
+    <div class="swiper-wrapper">
+      <!-- Loop para renderizar os slides -->
+      {
+        imagens.map((img, index) => (
+          <div class="swiper-slide">
+            <img src={img} alt={`Slide ${index + 1}`} class="slide-image" />
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Paginação -->
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+
+<style>
+  .carrossel {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+</style>
+
+<script>
+  import Swiper from "swiper";
+  import { Navigation, Pagination } from "swiper/modules";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    new Swiper(".motos-swiper", {
+      modules: [Navigation, Pagination],
+      spaceBetween: 20,
+      slidesPerView: 1, // 1 slide por vez para Motos
+      pagination: { el: ".swiper-pagination", clickable: true },
+      loop: true,
+    });
+  });
+</script>

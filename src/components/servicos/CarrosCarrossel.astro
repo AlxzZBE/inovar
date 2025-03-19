@@ -5,8 +5,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 // Função para gerar dinamicamente os nomes das imagens
-const basePath = "/carrossel"; // Caminho relativo às imagens no projeto
-const totalImages = 13; // Total de imagens
+const basePath = "/carrossel/carros"; // Caminho relativo às imagens no projeto
+const totalImages = 8; // Total de imagens
 const imagens = Array.from({ length: totalImages }, (_, i) => {
   const imageNumber = String(i + 1).padStart(2, "0"); // Formata números como "01", "02", etc.
   return `${basePath}/${imageNumber}.jpg`;
@@ -14,18 +14,18 @@ const imagens = Array.from({ length: totalImages }, (_, i) => {
 ---
 
 <div class="carrossel">
-  <div class="swiper">
+  <div class="swiper carros-swiper">
     <div class="swiper-wrapper">
       <!-- Loop para renderizar os slides -->
-      {imagens.map((img, index) => (
-        <div class="swiper-slide" key={index}>
-          <img src={img} alt={`Slide ${index + 1}`} class="slide-image" />
-        </div>
-      ))}
+      {
+        imagens.map((img, index) => (
+          <div class="swiper-slide">
+            <img src={img} alt={`Slide ${index + 1}`} class="slide-image" />
+          </div>
+        ))
+      }
     </div>
-    <!-- Botões de navegação -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
+
     <!-- Paginação -->
     <div class="swiper-pagination"></div>
   </div>
@@ -46,25 +46,21 @@ const imagens = Array.from({ length: totalImages }, (_, i) => {
 
   .slide-image {
     width: 100%;
-    border-radius: 8px;
+    height: 100%;
     object-fit: cover;
+    border-radius: 8px;
   }
 </style>
 
 <script>
-  // Inicialização do Swiper após o DOM ser carregado
   import Swiper from "swiper";
   import { Navigation, Pagination } from "swiper/modules";
 
   document.addEventListener("DOMContentLoaded", () => {
-    new Swiper(".swiper", {
+    new Swiper(".carros-swiper", {
       modules: [Navigation, Pagination],
       spaceBetween: 20,
-      slidesPerView: 1,
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
+      slidesPerView: 2, // 2 slides por vez para Carros
       pagination: { el: ".swiper-pagination", clickable: true },
       loop: true,
     });
