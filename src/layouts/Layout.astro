@@ -1,22 +1,109 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import Logo from "../components/Logo.astro";
+import Nav from "../components/Nav.astro";
+---
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Guincho 24 Horas São Paulo - Auto Socorro e Reboque - Inovar Guincho
+      (11)94849-8385
+    </title>
+
+    <meta
+      name="description"
+      content="Guincho 24h em São Paulo e Grande SP - Reboque e Auto Socorro rápido, eficiente e seguro. Atendimento imediato para qualquer emergência (11)94849-8385."
+    />
+
+    <!-- Open Graph (para redes sociais) -->
+    <meta
+      property="og:title"
+      content="Inovar Guincho - Guincho 24h e Reboque"
+    />
+    <meta
+      property="og:description"
+      content="Oferecemos serviços rápidos e eficientes de guincho e resgate de veículos, disponíveis 24h por dia."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.inovarguincho.com.br" />
+    <meta
+      property="og:image"
+      content="https://www.inovarguincho.com.br/images/og-image.jpg"
+    />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Favicon -->
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" href="/icons/favicon.ico" type="image/x-icon" />
+    <link rel="icon" sizes="16x16" href="/icons/favicon-16x16.png" />
+    <link rel="icon" sizes="32x32" href="/icons/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="icon" sizes="192x192" href="/icons/android-chrome-192x192.png" />
+    <link rel="icon" sizes="512x512" href="/icons/android-chrome-512x512.png" />
+
+    <!-- Pico.css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+
+    <style>
+      body {
+        padding: 5px 15px;
+      }
+
+      header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <Logo />
+      <Nav />
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <p>&copy; 2025 Inovar Guincho | Todos os direitos reservados</p>
+    </footer>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Inovar Guincho",
+        "url": "https://www.inovarguincho.com.br",
+        "logo": "https://www.inovarguincho.com.br/images/logo.png",
+        "sameAs": [
+          "https://www.facebook.com/inovarguincho",
+          "https://twitter.com/inovarguincho"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+55-11-94849-8385",
+          "contactType": "Customer Service",
+          "areaServed": "BR",
+          "availableLanguage": "Portuguese"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rua Exemplo, 123",
+          "addressLocality": "São Paulo",
+          "addressRegion": "SP",
+          "postalCode": "12345-678",
+          "addressCountry": "BR"
+        }
+      }
+    </script>
+  </body>
+</html>

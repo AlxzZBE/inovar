@@ -1,0 +1,45 @@
+---
+
+---
+
+<nav>
+  <ul class="nav-items">
+    <li><a href="/">Inicio</a></li>
+    <li><a href="/servicos">Serviços</a></li>
+    <li><a href="/contato">Contato</a></li>
+    <li>
+      <details class="dropdown">
+        <summary> Mais </summary>
+        <ul dir="rtl">
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/fotos">Fotos</a></li>
+        </ul>
+      </details>
+    </li>
+  </ul>
+</nav>
+
+<style>
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: rgb(73, 66, 66);
+  }
+
+  .nav-items {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .nav-items li {
+    border: 1px solid rgb(82, 67, 67);
+    border-radius: 10px;
+    padding: 10px;
+  }
+</style>
