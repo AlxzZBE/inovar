@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog");
+---
+
+<section>
+  <h1>📝 Últimos Artigos</h1>
+  {
+    posts.map((post) => (
+      <article>
+        <h2>{post.data.title}</h2>
+        <p>{post.data.description}</p>
+        <p>
+          <strong>🗓️ Publicado em:</strong>{" "}
+          {new Date(post.data.date).toLocaleDateString("pt-BR")}
+        </p>
+        {post.data.images && post.data.images.length > 0 && (
+          <img src={post.data.images[0]} alt="Imagem do post" />
+        )}
+        <a href={`/blog/${post.slug}`}>Ler mais</a>
+      </article>
+    ))
+  }
+</section>
