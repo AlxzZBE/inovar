@@ -1,10 +1,25 @@
 ---
 import { getCollection } from "astro:content";
 
-const posts = await getCollection("blog");
+// Função para gerar os caminhos estáticos para os slugs dos posts
+export async function getStaticPaths() {
+  // Recupera os posts da coleção "blog"
+  const posts = await getCollection("blog");
+
+  // Gera os caminhos dinâmicos para cada post com base no slug
+  return posts.map((post) => ({
+    params: { slug: post.slug }
+  }));
+}
+
+// Pega o slug da URL
 const { slug } = Astro.params;
+
+// Recupera os posts novamente para encontrar o post específico
+const posts = await getCollection("blog");
 const post = posts.find((p) => p.slug === slug);
 
+// Se não encontrar o post, lança um erro
 if (!post) {
   throw new Error(`Post "${slug}" não encontrado!`);
 }
